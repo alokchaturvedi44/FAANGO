@@ -8,7 +8,9 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true,
+        trim: true
     },
     phoneNumber: {
         type: Number,
@@ -24,10 +26,19 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     profile: {
-        bio: {type: String},
+        bio: {
+            type: String,
+            default: ""
+        },
         skills: {type: String},
-        resume: {type: String},      // URL to resume file
-        resumeOriginalName: {type: String},
+        resume: {
+            type: String,    // URL to resume file
+            default: ""
+        },      
+        resumeOriginalName: {
+            type: String,
+            default: ""
+        },
         company: {type: mongoose.Schema.Types.ObjectId, ref:'Company'},
         profilePhoto: {
             type: String,
